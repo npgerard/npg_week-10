@@ -107,12 +107,12 @@ model_2_train_and_dump()
 dtr = pickle.load(open('model_2.pickle', 'rb'))
 
 
-df_X = pd.DataFrame([
-    [10.00, 1],
-    [15.00, 3],
-    [8.50, np.nan]], 
-    columns=["100g_USD", "roast_cat"])
+# df_X = pd.DataFrame([
+#     [10.00, 1],
+#     [15.00, 3],
+#     [8.50, np.nan]], 
+#     columns=["100g_USD", "roast_cat"])
 
-y_pred = dtr.predict(df_X.values)   # `dtr` is a DecisionTreeRegressor  
-print(y_pred)
+# y_pred = dtr.predict(df_X.values)   # `dtr` is a DecisionTreeRegressor  
+# print(y_pred)
 
