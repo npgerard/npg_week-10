@@ -27,7 +27,7 @@ def model_1_train_and_dump():
 
     # define what features/target constitutde X and y for training
     X = df_train[feature_col]
-    y = df_train[feature_col]
+    y = df_train[target_col]
 
     # instantiate the model
     model = LinearRegression()
@@ -103,8 +103,8 @@ def model_2_train_and_dump():
 model_1_train_and_dump()
 model_2_train_and_dump()
 
-# test code
-dtr = pickle.load(open('model_2.pickle', 'rb'))
+# # test code
+# dtr = pickle.load(open('model_2.pickle', 'rb'))
 
 
 # df_X = pd.DataFrame([
@@ -113,6 +113,16 @@ dtr = pickle.load(open('model_2.pickle', 'rb'))
 #     [8.50, np.nan]], 
 #     columns=["100g_USD", "roast_cat"])
 
-# y_pred = dtr.predict(df_X.values)   # `dtr` is a DecisionTreeRegressor  
-# print(y_pred)
+# # y_pred = dtr.predict(df_X.values)   # `dtr` is a DecisionTreeRegressor  
+# # print(y_pred)
 
+
+# df_X_2 = pd.DataFrame([
+#     [10.00],
+#     [15.00],
+#     [8.50]], 
+#     columns=["100g_USD"])
+
+# lgr = pickle.load(open('model_1.pickle', 'rb'))
+# y_pred2 = lgr.predict(df_X_2.values)   # `lgr` is a LinearRegression
+# print(y_pred2)
