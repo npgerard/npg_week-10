@@ -10,6 +10,7 @@ from sklearn.tree import DecisionTreeRegressor
 import pickle
 
 def model_1_train_and_dump():
+    '''Function to train the linear regression model and write to pickle'''
     # retrieve the data
     df_coffee = pd.read_csv('https://raw.githubusercontent.com/leontoddjohnson/datasets/main/data/coffee_analysis.csv')
     df_coffee.drop_duplicates(subset='desc_1', inplace=True)
@@ -39,22 +40,31 @@ def model_1_train_and_dump():
     pickle.dump(model, open('model_1.pickle', 'wb'))
 
 
+
+# some generic functions for writing/reading mappings 
+# in case we need to implement more later
 def write_map(dataframe, mapped_field, pickle_filename):
+    '''Function to create and write a mapping of unique values to integers to a pickle file'''
     mapping = {name: idx for idx, name in enumerate(dataframe[mapped_field].unique())}
     with open(pickle_filename, 'wb') as f:
         pickle.dump(mapping, f)
 
 def read_mapping(pickle_file_name):
+    '''Function to read and return a mapping from pickle file'''
     with open(pickle_file_name, 'rb') as f:
         mapping = pickle.load(f)
     return mapping
 
 def roast_category():
+    '''Function to read and return the roast mapping from pickle file - 
+    I had written the other two generic functions before the asssignment asked 
+    for this specific one'''
     return read_mapping('roast_map.pickle')
 
 
 
 def model_2_train_and_dump():
+    '''Function to train the decision tree regression model and write to pickle'''
     # retrieve the data
     df_coffee = pd.read_csv('https://raw.githubusercontent.com/leontoddjohnson/datasets/main/data/coffee_analysis.csv')
     df_coffee.drop_duplicates(subset='desc_1', inplace=True)
@@ -100,8 +110,12 @@ def model_2_train_and_dump():
     pickle.dump(model, open('model_2.pickle', 'wb'))
 
 
+# call the functions to train the models
+# and dump them to pickle files
 model_1_train_and_dump()
 model_2_train_and_dump()
+
+
 
 # # test code
 # dtr = pickle.load(open('model_2.pickle', 'rb'))
